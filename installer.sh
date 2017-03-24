@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+#Maintainer: Suraj Nair
+
 if [ $(id -u) -ne 0 ]; then
 	echo "Run this script as a Root user only" >&2
 	exit 1
