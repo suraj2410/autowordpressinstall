@@ -1,5 +1,7 @@
 <center><b> Simple LAMP + WORDPRESS installation (unattended) over Ubuntu 16.04 LTS </b></center>
 
+
+
 This shell script asks for simple questions regarding MySQL DB root user password, Wordpress User and DB etc in order to setup a running Wordpress install in Ubuntu 16.04
 
 Versions of packages that will be installed:
