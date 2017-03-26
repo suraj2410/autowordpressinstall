@@ -33,6 +33,8 @@ fi
 
 LOGFILE=/root/installlog.txt
 
+echo "Updating repo information...\n"
+
 apt-get update >> $LOGFILE
 
 #
@@ -49,7 +51,7 @@ checkerror $?
 #Installing MySQL 5.7 which is available in default repo for Ubuntu 16.06
 #
 
-echo " Installing MySQL 5.7 now...\n"
+echo "Installing MySQL 5.7 now...\n"
 
 echo "mysql-server-5.7 mysql-server/root_password password root" | sudo debconf-set-selections
 echo "mysql-server-5.7 mysql-server/root_password_again password root" | sudo debconf-set-selections
@@ -89,8 +91,8 @@ checkerror $?
 # Installing additional PHP plugins required by Wordpress as a default set
 #
 
-echo "Installing additional PHP plugins as a default set which might be required by Wordpress...
-NOTE: Each WordPress plugin has its own set of requirements. Some may require additional PHP packages to be installed. Check your plugin documentation to discover its PHP requirements "
+echo "Installing additional PHP plugins as a default set which might be required by Wordpress... \n
+NOTE: Each WordPress plugin has its own set of requirements. Some may require additional PHP packages to be installed. Check your plugin documentation to discover its PHP requirements \n"
 
 apt-get install php-curl php-gd php-mbstring php-mcrypt php-xml php-xmlrpc -y >> $LOGFILE 2>&1
 
@@ -158,7 +160,7 @@ mkdir /tmp/wordpress/wp-content/upgrade
 
 cp -a /tmp/wordpress/. /var/www/html
 
-cd -
+cd - >> $LOGFILE 2>&1
 
 rm -f /var/www/html/index.html
 
