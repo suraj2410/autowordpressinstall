@@ -17,15 +17,6 @@ fi
 
 IP=$(ip route get 8.8.8.8 | awk 'NR==1 {print $NF}')
 
-read -p "Please insert the new MySQL Password for root: " MYSQLPASSWORD
-
-read -p "Enter Wordpress Database name: " WPDBNAME
-
-read -p "Enter Wordpress Mysql user : " WPUSER
-
-read -p "Enter Wordpress Mysql password for above user: " WPPWD
-
-
 #
 #Check Error at any place and exit
 #
@@ -35,11 +26,48 @@ checkerror() {
 RESULT=$1
 
 if [ $RESULT != 0 ];then
-echo "Errors occured while installing Apache package, Check $LOGFILE"
+echo "Errors occured while installing, Check $LOGFILE"
 exit 127
 fi
 
 }
+
+
+#
+# Fetching required vaiables to proceed
+#
+
+MYSQLPASSWORD=
+while [[ $MYSQLPASSWORD = "" ]]; do
+   read -p "Please insert the new MySQL Password for root: " MYSQLPASSWORD
+done
+
+checkerror $?
+
+
+WPDBNAME=
+while [[ $WPDBNAME = "" ]]; do
+   read -p "Enter Wordpress Database name: " WPDBNAME
+done
+
+checkerror $?
+
+
+WPUSER=
+while [[ $WPUSER = "" ]]; do
+   read -p "Enter Wordpress Mysql user : " WPUSER
+done
+
+checkerror $?
+
+WPPWD=
+while [[ $WPPWD = "" ]]; do
+   read -p "Enter Wordpress Mysql password for above user: " WPPWD
+done
+
+checkerror $?
+
+
 
 LOGFILE=/root/installlog.txt
 
