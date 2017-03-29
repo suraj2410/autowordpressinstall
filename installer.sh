@@ -2,10 +2,20 @@
 
 #Maintainer: Suraj Nair
 
+#
+#Check if we have privileges
+#
+
 if [ $(id -u) -ne 0 ]; then
 	echo "Run this script as a Root user only" >&2
 	exit 1
 fi
+
+#
+# Getting IP from the system
+#
+
+IP=$(ip route get 8.8.8.8 | awk 'NR==1 {print $NF}')
 
 read -p "Please insert the new MySQL Password for root: " MYSQLPASSWORD
 
@@ -198,7 +208,7 @@ Log file is at $LOGFILE
 
 You may need to add the ServerName directive as required in the sites-enabled and sites-available conf files with DNS working properly for that servername.
 
-Please browse to http://your_IP to complete the installation through web interface
+Please browse to http://$IP to complete the installation through web interface
 
 The information you'll need are as follows:
 
